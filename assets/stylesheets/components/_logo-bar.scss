@@ -1,0 +1,20 @@
+.logo-bar {
+  height: 100vh;
+  min-width: 48px;
+  padding: 8px;
+  background-color: $dark-grey;
+  .logo {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background-color: $light-green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #logo-img {
+    height: 32px;
+    width: 32px;
+    border-radius: 0;
+  }
+}

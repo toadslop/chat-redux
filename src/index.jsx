@@ -3,9 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-
-// Logger with default options
 import logger from 'redux-logger';
+import promiseMiddleware from 'redux-promise';
 
 // internal modules
 import App from './components/app';
@@ -19,12 +18,14 @@ import currentUserReducer from './reducers/currentUserReducer';
 const initialState = {
   messages: [
     {
-      message: "Hello",
-      user: "Mike"
+      author: "anonymous92",
+      content: "Hello world!",
+      created_at: "2017-09-26T23:03:16.365Z"
     },
     {
-      message: "I'm an Indonesian.",
-      user: "Ryanda"
+      author: "anonymous77",
+      content: "My name is anonymous77",
+      created_at: "2017-09-26T23:03:21.194Z"
     }
   ],
   channels: ["#general", "#react", "#paris"],
@@ -42,7 +43,7 @@ const reducers = combineReducers({
 
 // render an instance of the component in the DOM
 ReactDOM.render(
-  <Provider store={createStore(reducers, initialState, applyMiddleware(logger))}>
+  <Provider store={createStore(reducers, initialState, applyMiddleware(logger, promiseMiddleware))}>
     <App />
   </Provider>,
   document.getElementById('root')
