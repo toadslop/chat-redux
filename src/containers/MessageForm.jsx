@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { createMessage, updateInputValue } from '../actions';
+import { createMessage, updateInputValue, clearInput } from '../actions';
 
 class MessageForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
-    const { selectedChannel, currentUser } = this.props;
-    const content = event.target.value;
-    this.props.createMessage(selectedChannel, currentUser, content);
+    const { selectedChannel, currentUser, inputValue } = this.props;
+    this.props.createMessage(selectedChannel, currentUser, inputValue);
+    this.props.clearInput();
   }
 
   handleChange = (event) => {
@@ -29,7 +29,7 @@ class MessageForm extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { createMessage, updateInputValue },
+    { createMessage, updateInputValue, clearInput },
     dispatch
   );
 }
