@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 // external imports
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,12 +16,19 @@ class MessageList extends Component {
     // eslint-disable-next-line no-shadow
     const { selectedChannel } = this.props;
     this.props.getMessages(selectedChannel);
+    this.intervalId = window.setInterval(() => { this.props.getMessages(selectedChannel); }, 5000);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
+  intervalId
 
   render() {
     const { messages } = this.props;
     return (
-      <div id="message-list">
+      <div id="message-list" ref={this.messageRef}>
         <div id="header">
           <h3>Channel {this.props.selectedChannel}</h3>
         </div>
