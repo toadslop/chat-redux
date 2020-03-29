@@ -16,7 +16,14 @@ class MessageList extends Component {
     // eslint-disable-next-line no-shadow
     const { selectedChannel } = this.props;
     this.props.getMessages(selectedChannel);
-    this.intervalId = window.setInterval(() => { this.props.getMessages(selectedChannel); }, 5000);
+    const scrollHeight = this.scroll.current.scrollHeight;
+    this.scroll.current.scrollTop = scrollHeight;
+    this.intervalId = window.setInterval(() => { this.props.getMessages(selectedChannel); }, 2000);
+  }
+
+  getSnapshotBeforeUpdate() {
+    const scrollHeight = this.scroll.current.scrollHeight;
+    this.scroll.current.scrollTop = scrollHeight;
   }
 
   componentWillUnmount() {
@@ -24,15 +31,16 @@ class MessageList extends Component {
   }
 
   intervalId
+  scroll = React.createRef();
 
   render() {
     const { messages } = this.props;
     return (
-      <div id="message-list" ref={this.messageRef}>
+      <div id="message-list">
         <div id="header">
           <h3>Channel {this.props.selectedChannel}</h3>
         </div>
-        <div id="messages">
+        <div ref={this.scroll} id="messages">
           {messages.map((message) => {
             return <Message message={message} />;
           })}
