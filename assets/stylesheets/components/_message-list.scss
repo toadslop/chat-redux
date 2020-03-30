@@ -21,6 +21,14 @@
   overflow: auto;
 }
 
+.message-heading {
+  display: flex;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
 #message-input {
   display: flex;
   margin: 0;
