@@ -14,12 +14,12 @@ import { getMessages } from '../actions';
 class MessageList extends Component {
   componentDidMount() {
     // eslint-disable-next-line no-shadow
-    const { channelFromParams } = this.props;
-    this.props.getMessages(channelFromParams);
     const scrollHeight = this.scroll.current.scrollHeight;
     this.scroll.current.scrollTop = scrollHeight;
+    this.props.getMessages(this.props.channelFromParams);
     this.intervalId = window.setInterval(() => {
-      this.props.getMessages(channelFromParams);
+      this.props.getMessages(this.props.channelFromParams);
+      console.log("message list, did update", this.props.channelFromParams);
     }, 5000);
   }
 
