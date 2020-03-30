@@ -5,19 +5,19 @@ import { connect } from 'react-redux';
 import { createMessage, updateInputValue, clearInput } from '../actions';
 
 class MessageForm extends Component {
+  componentDidMount() {
+    this.focus.current.focus();
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const { selectedChannel, currentUser, inputValue } = this.props;
-    this.props.createMessage(selectedChannel, currentUser, inputValue);
+    const { channelFromParams, currentUser, inputValue } = this.props;
+    this.props.createMessage(channelFromParams, currentUser, inputValue);
     this.props.clearInput();
   }
 
   handleChange = (event) => {
     this.props.updateInputValue(event.target.value);
-  }
-
-  componentDidMount() {
-    this.focus.current.focus();
   }
 
   focus = React.createRef();
@@ -43,7 +43,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     inputValue: state.inputValue,
-    selectedChannel: state.selectedChannel,
     currentUser: state.currentUser
   };
 }

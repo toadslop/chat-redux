@@ -2,17 +2,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectChannel } from '../actions';
+import { Link } from 'react-router-dom';
 
 class ChannelList extends Component {
-  handleClick = (event) => {
-    this.props.selectChannel(event.target.id);
-  }
-
   classes = "channel-line";
 
   render() {
-    const { currentUser, channels, selectedChannel } = this.props;
+    const { currentUser, channels, channelFromParams } = this.props;
     return (
       <div
         className="channel-list"
@@ -29,11 +25,13 @@ class ChannelList extends Component {
             {channels.map((channel) => {
               return (
                 <p
-                  onClick={this.handleClick}
                   id={channel}
                   key={channel}
-                  className={(channel === selectedChannel ? this.classes + " active" : this.classes)}>
-                  #{channel}
+                  className={(channel === channelFromParams ? `${this.classes} active` : this.classes)}
+                >
+                  <Link to={`/${channel}`}>
+                    #{channel}
+                  </Link>
                 </p>
               );
             })}
@@ -46,7 +44,7 @@ class ChannelList extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { selectChannel },
+    { },
     dispatch
   );
 }
@@ -55,7 +53,6 @@ function mapStateToProps(state) {
   return {
     channels: state.channels,
     currentUser: state.currentUser,
-    selectedChannel: state.selectedChannel
   };
 }
 

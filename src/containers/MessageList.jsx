@@ -14,11 +14,13 @@ import { getMessages } from '../actions';
 class MessageList extends Component {
   componentDidMount() {
     // eslint-disable-next-line no-shadow
-    const { selectedChannel } = this.props;
-    this.props.getMessages(selectedChannel);
+    const { channelFromParams } = this.props;
+    this.props.getMessages(channelFromParams);
     const scrollHeight = this.scroll.current.scrollHeight;
     this.scroll.current.scrollTop = scrollHeight;
-    this.intervalId = window.setInterval(() => { this.props.getMessages(selectedChannel); }, 5000);
+    this.intervalId = window.setInterval(() => {
+      this.props.getMessages(channelFromParams);
+    }, 5000);
   }
 
   componentDidUpdate() {
@@ -34,18 +36,18 @@ class MessageList extends Component {
   scroll = React.createRef();
 
   render() {
-    const { messages } = this.props;
+    const { messages, channelFromParams } = this.props;
     return (
       <div id="message-list">
         <div id="header">
-          <h3>Channel {this.props.selectedChannel}</h3>
+          <h3>Channel {channelFromParams}</h3>
         </div>
         <div ref={this.scroll} id="messages">
           {messages.map((message) => {
             return <Message message={message} key={message.id} />;
           })}
         </div>
-        <MessageForm />
+        <MessageForm channelFromParams={channelFromParams} />
       </div>
     );
   }
@@ -61,7 +63,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    selectedChannel: state.selectedChannel,
     messages: state.messages
   };
 }
