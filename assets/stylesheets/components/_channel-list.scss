@@ -2,9 +2,10 @@
   min-width: 200px;
   background-color: $light-green;
   height: 100%;
+  border-right: 2px solid $dark-grey;
   h2 {
     font-weight: bold;
-    margin: 20px 0;
+    margin: 17px 0;
   }
   #welcome {
     font-weight: bold;
@@ -16,6 +17,7 @@
   }
   .channel-line {
     cursor: pointer;
+    margin-left: 8px;
   }
   .sidebar-section {
     width: 100%;
