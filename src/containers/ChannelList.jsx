@@ -17,20 +17,27 @@ class ChannelList extends Component {
       <div
         className="channel-list"
       >
-        <h3>Bri-chat!</h3>
-        <p>Hi {currentUser}</p>
-        <div>
-          {channels.map((channel) => {
-            return (
-              <p
-                onClick={this.handleClick}
-                id={channel}
-                key={channel}
-                className={(channel === selectedChannel ? this.classes + " active" : this.classes)}>
-                #{channel}
-              </p>
-            );
-          })}
+        <div className="sidebar-section">
+          <h2>Bri-chat!</h2>
+        </div>
+        <div className="sidebar-section">
+          <p id="welcome">Hi {currentUser}</p>
+        </div>
+        <div className="sidebar-section channels">
+          <p id="channels-heading">Channels</p>
+          <div>
+            {channels.map((channel) => {
+              return (
+                <p
+                  onClick={this.handleClick}
+                  id={channel}
+                  key={channel}
+                  className={(channel === selectedChannel ? this.classes + " active" : this.classes)}>
+                  #{channel}
+                </p>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
