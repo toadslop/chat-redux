@@ -2,7 +2,7 @@ import React from 'react';
 import ChannelList from '../containers/ChannelList';
 import MessageList from '../containers/MessageList';
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="app">
       <div className="logo-bar">
@@ -15,8 +15,8 @@ const App = () => {
           />
         </div>
       </div>
-      <ChannelList />
-      <MessageList />
+      <ChannelList channelFromParams={props.match.params.channel} />
+      <MessageList channelFromParams={props.match.params.channel} />
     </div>
   );
 };

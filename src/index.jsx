@@ -5,15 +5,14 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
-import { BrowerserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { createHistory as history } from 'history';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { createHistory as history } from 'history'; 
 
 // internal modules
 import App from './components/app';
 import '../assets/stylesheets/application.scss';
 import messagesReducer from './reducers/messagesReducer';
 import channelsReducer from './reducers/channelsReducer';
-import selectedChannelReducer from './reducers/selectedChannelReducer';
 import currentUserReducer from './reducers/currentUserReducer';
 import inputValueReducer from './reducers/inputValueReducer';
 
@@ -21,7 +20,6 @@ import inputValueReducer from './reducers/inputValueReducer';
 const initialState = {
   messages: [],
   channels: ["general", "react", "paris"],
-  selectedChannel: "general",
   // eslint-disable-next-line no-alert
   currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
   inputValue: ""
@@ -30,7 +28,6 @@ const initialState = {
 const reducers = combineReducers({
   messages: messagesReducer,
   channels: channelsReducer,
-  selectedChannel: selectedChannelReducer,
   currentUser: currentUserReducer,
   inputValue: inputValueReducer
 });

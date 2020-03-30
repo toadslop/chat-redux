@@ -2,10 +2,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  entry: './src/index.jsx',
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -13,6 +15,9 @@ module.exports = {
     })
   ],
   devtool: 'sourcemap',
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     rules: [
       {
