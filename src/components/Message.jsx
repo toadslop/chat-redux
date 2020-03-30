@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import {emojify} from 'react-emojione';
 
 export default class Message extends Component {
   hashCode = (str) => { // java String#hashCode
@@ -25,7 +26,7 @@ export default class Message extends Component {
           <p className="user-name" style={{ color: `#${this.intToRGB(this.hashCode(message.author))}` }}>{message.author}</p>
           <p>&nbsp;- {message.created_at}</p>
         </div>
-        <p>{message.content}</p>
+        <p>{emojify(message.content)}</p>
       </div>
     );
   }
