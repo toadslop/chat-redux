@@ -16,11 +16,17 @@ class MessageForm extends Component {
     this.props.updateInputValue(event.target.value);
   }
 
+  componentDidMount() {
+    this.focus.current.focus();
+  }
+
+  focus = React.createRef();
+
   render() {
     const { inputValue } = this.props;
     return (
       <form id="message-input" onSubmit={this.handleSubmit}>
-        <input id="input" type="text" value={inputValue} onChange={this.handleChange} />
+        <input ref={this.focus} id="input" type="text" value={inputValue} onChange={this.handleChange} />
         <button id="submit" type="submit">Send</button>
       </form>
     );

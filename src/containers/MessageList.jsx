@@ -18,7 +18,7 @@ class MessageList extends Component {
     this.props.getMessages(selectedChannel);
     const scrollHeight = this.scroll.current.scrollHeight;
     this.scroll.current.scrollTop = scrollHeight;
-    this.intervalId = window.setInterval(() => { this.props.getMessages(selectedChannel); }, 2000);
+    this.intervalId = window.setInterval(() => { this.props.getMessages(selectedChannel); }, 5000);
   }
 
   componentDidUpdate() {

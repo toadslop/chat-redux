@@ -42,3 +42,11 @@ export function clearInput() {
     payload: ""
   };
 }
+
+export function selectChannel(selectedChannel) {
+  console.log(selectedChannel);
+  return {
+    type: 'SELECT_CHANNEL',
+    payload: selectedChannel
+  };
+}

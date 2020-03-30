@@ -2,30 +2,46 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { selectChannel } from '../actions';
 
 class ChannelList extends Component {
+  handleClick = (event) => {
+    this.props.selectChannel(event.target.id);
+  }
+
+  classes = "channel-line";
+
   render() {
+    const { currentUser, channels, selectedChannel } = this.props;
     return (
       <div
         className="channel-list"
       >
         <h3>Bri-chat!</h3>
-        <p>Hi {this.props.currentUser}</p>
+        <p>Hi {currentUser}</p>
         <div>
-          {this.props.channels.map((channel) => {
+          {channels.map((channel) => {
             return (
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
               <p
-                className={(channel === this.props.selectedChannel ? "active" : "")}
+                onClick={this.handleClick}
+                id={channel}
                 key={channel}
-              >
-              #{channel}
-              </p>);
+                className={(channel === selectedChannel ? this.classes + " active" : this.classes)}>
+                #{channel}
+              </p>
+            );
           })}
         </div>
       </div>
     );
   }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { selectChannel },
+    dispatch
+  );
 }
 
 function mapStateToProps(state) {
@@ -36,4 +52,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(ChannelList);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);
