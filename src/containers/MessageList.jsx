@@ -21,7 +21,7 @@ class MessageList extends Component {
     this.intervalId = window.setInterval(() => { this.props.getMessages(selectedChannel); }, 2000);
   }
 
-  getSnapshotBeforeUpdate() {
+  componentDidUpdate() {
     const scrollHeight = this.scroll.current.scrollHeight;
     this.scroll.current.scrollTop = scrollHeight;
   }
@@ -42,7 +42,7 @@ class MessageList extends Component {
         </div>
         <div ref={this.scroll} id="messages">
           {messages.map((message) => {
-            return <Message message={message} />;
+            return <Message message={message} key={message.id} />;
           })}
         </div>
         <MessageForm />

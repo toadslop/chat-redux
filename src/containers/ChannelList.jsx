@@ -12,13 +12,16 @@ class ChannelList extends Component {
         <h3>Bri-chat!</h3>
         <p>Hi {this.props.currentUser}</p>
         <div>
-        {this.props.channels.map((channel) => {
-          return (
+          {this.props.channels.map((channel) => {
+            return (
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-            <p className={( channel === this.props.selectedChannel ? "active" : "")}>
-              {channel}
-            </p>);
-        })}
+              <p
+                className={(channel === this.props.selectedChannel ? "active" : "")}
+                key={channel}
+              >
+              #{channel}
+              </p>);
+          })}
         </div>
       </div>
     );
