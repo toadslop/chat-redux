@@ -21,7 +21,7 @@ export default class Message extends Component {
   render() {
     const { message } = this.props;
     return (
-      <div>
+      <div className="message">
         <div className="message-heading">
           <p className="user-name" style={{ color: `#${this.intToRGB(this.hashCode(message.author))}` }}>{message.author}</p>
           <p>&nbsp;- {message.created_at}</p>

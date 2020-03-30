@@ -21,14 +21,17 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-}
-
-.message-heading {
-  display: flex;
-}
-
-.user-name {
-  font-weight: bold;
+  .message-heading {
+    display: flex;
+  }
+  
+  .user-name {
+    font-weight: bold;
+  }
+  .message {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-top: 8px;
+  }
 }
 
 #message-input {
@@ -36,6 +39,7 @@
   margin: 0;
   padding: 20px;
   width: 100%;
+  background-color: $dark-grey;
   #submit {
     background-color: $light-green;
     font-size: 16px;
